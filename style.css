@@ -139,3 +139,23 @@ button:hover span{
     border-radius: 10px;
     margin-right: min(20px, 10vw);
 }
+
+.wrapper{
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.container{
+    height: fit-content+200px;
+    width: max(200px, 30vw);
+    margin-bottom: 20px;
+    background-color: #11151e;
+    border-radius: 10px;
+}
+.container h3, .container p{
+    margin: 10px;
+}
+.container h3{
+    color: var(--clr-box2);
+}
