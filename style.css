@@ -1,6 +1,6 @@
 :root{
     --clr-dark: #11151e;
-    --clr-dark-opc: #11151ea2;
+    --clr-dark-opc: #11151ec2;
     --clr-box1: #02457a;
     --clr-box2: #018abe;
     --clr-white1: #97cadb;
@@ -10,6 +10,8 @@
 *::before,
 *::after{
     margin: 0; border: 0;
+
+    font-family: 'Montserrat';
 }
 body{
     background-image: url(assets/bg1.jpg);
@@ -25,6 +27,8 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    font-size: min(1rem, 2vw);
 }
 .navbar h2{
     color: var(--clr-white2);
@@ -35,7 +39,7 @@ body{
 .navbar ul li{
     list-style: none;
     display: inline-block;
-    margin: 0 20px;
+    margin: 0 min(20px, 2vw);
     position: relative;
 }
 .navbar ul li a{
@@ -58,33 +62,80 @@ body{
     width: 100%;
 }
 .hero{
-    width: 80vw; height: 50vh;
+    width: 80vw; height: clamp(200px, 50vw, 400px);
     background-color: var(--clr-dark-opc);
-    margin: 20vh auto 0 auto; 
+    backdrop-filter: blur(10px);
+    margin: min(20vh, 10vw) auto 0 auto; 
     border-radius: 20px;
 
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
-.hero .left,img{
-    padding: 0 40px;
-}
-.left{
-    padding-left: 10%;
+.left{ 
+    display: flex;
+    flex-direction: column; 
+    width: 50%;
+    margin-left: min(20px, 10vw);
+
+    gap: 20px;
+
 }
 .hero h2,p{
     color: var(--clr-white2);
 }
 .hero h2{
-    font-size: clamp(2vw, 2rem, 5vw);
+    font-size: clamp(20px, 2vw, 5vw);
 }
 .hero p{
-    font-size: clamp(10px, 1.5rem, 40px);
+    font-size: clamp(10px, 1vw, 40px);
     text-align: justify;
-    margin-top: 5vh;
-    width: min(60%, 50vw);
 }
+.hero button{
+    align-self: center;
+    width: 50%;
+    height: min(6vw, 40px);
+    border-radius: 20px;
+    background-color: transparent;
+    color: var(--clr-white2);
+    border: 3px solid var(--clr-white2);
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+span{
+    background-color: var(--clr-white2);
+    border-radius: 20px;
+    height: 100%; width: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    transition: .2s;
+}
+button:hover{
+    color: var(--clr-dark);
+    cursor: pointer;
+}
+button:hover span{
+    width: 150%;
+}
+/* .hero button::before{
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    border-radius: 20px;
+    z-index: -1;
+    padding: 3px;
+    background-color: var(--clr-white1);
+} */
 .hero img{
     max-height: 30vw;
     height: 80%;
+    border-radius: 10px;
+    margin-right: min(20px, 10vw);
 }
