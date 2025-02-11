@@ -15,9 +15,26 @@
         <ul>
             <li><a href="">Home</a></li>
             <li><a href="">Search</a></li>
-            <li><a href="">Login</a></li>
+            <li><p id="login">Login</p></li>
         </ul>
     </nav>
+
+    <div class="contain-login">    
+        <div class="login_form">
+            <form action="POST">
+                <div class="close_btn">&times;</div>
+                <h2>Log in</h2>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Enter your email here">
+                
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Secure your personal account">
+                
+                <input type="submit" value="Submit">
+                <a href="">Forget Password</a>
+            </form>
+        </div>
+    </div>
 
     <div class="hero">
         <div class="left">
@@ -81,7 +98,8 @@
             <li><a href="">Contact</a></li>
             <li><a href="">Accounts</a></li>
             <li><a href="">Github</a></li>
-        </ul>
+        </ul> 
     </footer>
 </body>
+<script src="index.js" defer></script>
 </html>

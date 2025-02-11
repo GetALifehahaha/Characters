@@ -1,4 +1,5 @@
 :root{
+    --clr-gray: #7d7e8d;
     --clr-dark: #11151e;
     --clr-dark2: #050608;
     --clr-dark-opc: #11151e54;
@@ -7,6 +8,7 @@
     --clr-box2: #018abe;
     --clr-white1: #97cadb;
     --clr-white2: #d6e8ee;
+    --angle: 0deg;
 }
 *,
 *::before,
@@ -16,6 +18,7 @@
     font-family: 'Montserrat', 'Century Gothic';
 }
 body{
+    position: relative;
     background-image: url(assets/bg1.jpg);
     background-size: cover;
     background-attachment: fixed;
@@ -47,10 +50,11 @@ body{
     margin: 0 min(20px, 2vw);
     position: relative;
 }
-.navbar ul li a{
+.navbar ul li a, .navbar ul li p{
     color: var(--clr-white2);
     text-decoration: none;
     text-transform: uppercase;
+    cursor: pointer;
 }
 .navbar ul li::after{
     content: '';
@@ -67,6 +71,7 @@ body{
     width: 100%;
 }
 .hero{
+    position: relative;
     width: 80vw; height: clamp(200px, 50vw, 400px);
     background-color: var(--clr-dark-opc);
     backdrop-filter: blur(10px);
@@ -132,6 +137,98 @@ button:hover span{
     border-radius: 10px;
     margin-right: min(50px, 5vw);
 }
+.contain-login{
+    z-index: 1;
+    position: fixed;
+    left: -100%; top: 0;
+    width: 30%;
+
+    transition: 0.5s ease-in 0ms;
+}
+.login_form{
+    height: min(100vh, 800px);
+    background-color: var(--clr-dark2);
+    outline: 5px solid var(--clr-dark2);
+    outline-offset: 5px;
+
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.active_form{
+    left: 0%;
+}
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+.login_form::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: -5px; left: 0;
+    position: absolute;
+    background-image: conic-gradient(from var(--angle), var(--clr-dark) 40%, var(--clr-box2), var(--clr-dark));
+    z-index: -1;
+    padding: 5px;
+    animation: 5s color-gradience linear infinite;
+}
+.login_form form{
+    margin: 15%;
+}
+.login_form .close_btn{
+    color: var(--clr-white2);
+    font-size: 30px;
+    background-color: transparent;
+    text-align: right;
+    cursor: pointer;
+}
+.login_form form input[type='text'],
+.login_form form input[type='password']{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    height: 2rem;
+    width: 100%;
+    align-self: center;
+    border-bottom: 1px solid var(--clr-gray);
+    outline: 0;
+    background-color: var(--clr-dark2);
+    color: var(--clr-white2);
+}
+.login_form h2{
+    color: var(--clr-white1);
+    margin-bottom: 3rem;
+}
+.login_form label{
+    color: var(--clr-white2);
+}
+.login_form form input[type='submit']{
+    margin-top: 2rem;
+    height: 3rem;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--clr-box2);
+    color: var(--clr-dark2);
+    font-weight: bold;
+    font-size: 1.2rem;
+    align-self: center;
+    transition: .1s;
+    position: relative;
+}
+.login_form form input[type='submit']:hover{
+    cursor: pointer;
+    background-color: var(--clr-box1);
+    color: var(--clr-white2);
+    outline: 2px solid var(--clr-box2);
+}
+.login_form form a{
+    margin-top: 10px;
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    color: var(--clr-white-opc);
+}
 .wrapper{
     margin-top: 100px;
     display: flex;
@@ -156,10 +253,11 @@ button:hover span{
     color: var(--clr-box2);
 }
 .container p{
+    font-size: clamp(10px, 1vw, 40px);
     margin: 1rem max(3vw, 5px);
     color: var(--clr-white2);
     letter-spacing: .05rem;
-    line-height: 1.5rem;
+    line-height: min(1.5rem, 3vw);
 }
 .body{
     background-image: linear-gradient(var(--clr-dark), var(--clr-dark2));
@@ -273,8 +371,21 @@ footer p, footer ul{
     margin: 0 20px;
 
 }
+@keyframes color-gradience{
+    from{
+        --angle: 0deg
+    }
+    to{
+        --angle: 360deg
+    }
+}
 @media only screen and (max-width: 650px){
     .body::before{
         opacity: 0;
+    }
+    .contain-login{
+        width: 100%;
+        height: 80vh;
+        top: 5vh;
     }
 }
